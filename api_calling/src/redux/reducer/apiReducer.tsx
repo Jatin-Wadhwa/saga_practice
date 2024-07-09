@@ -1,25 +1,36 @@
-
-const initialState={
+interface mytypes{
+    loading:boolean,
+    data:null |any,
+    error:boolean
+}
+const initialState:mytypes={
     loading:false,
     data:null,
     error:false
 }
 
-const userReducer=(state=initialState,action)=>{
+const userReducer=(state=initialState,action:any)=>{
     switch(action.type){
         case 'REQUESTED':
-            return{
-                loading:true
+            return {
+                ...state,
+                loading: true,
+                error: false // reset error state when a new request is made
             };
         case 'SUCCESS':
-            return{
-                loading:false,
-                data:action.payload
-            }
+            return {
+                loading: false,
+                data: action.payload,
+                error: false
+            };
         case 'FAILED':
-            return{
-                error:true
-            }
+            return {
+                loading: false,
+                data: null,
+                error: true
+            };
+            default: 
+            return state;
     }
 }
 

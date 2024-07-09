@@ -7,7 +7,7 @@ interface prviderprops{
     children:ReactNode;
 }
 
-const Prvider=({children})=>{
+const Prvider: React.FC<prviderprops>=({children})=>{
     return <Provider store={store}>{children}</Provider>
 };
 

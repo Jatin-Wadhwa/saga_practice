@@ -1,15 +1,17 @@
 import { call,put,takeEvery } from "redux-saga/effects";
-import axios from "axios";
-import { fetchUserRequest,fetchUserSuccess,fetchUserFailure } from "../action/userActions";
+import axios, {AxiosResponse} from "axios";
+import {fetchUserSuccess,fetchUserFailure } from "../action/userActions";
+
 
 function* fetchUser(){
     try{
-        const response= yield call(axios.get('https://jsonplaceholder.typicode.com/users'));
-
-        yield put(fetchUserSuccess(response.data))
+        const response:AxiosResponse<any>= yield call(axios.get('https://jsonplaceholder.typicode.com/users'));
+        console.log('response');
+        yield put(fetchUserSuccess(response))
     }
-    catch(error){
+    catch(error:any){
         yield put(fetchUserFailure(error.message))
+        console.log(error.message);
     }
 }
 
