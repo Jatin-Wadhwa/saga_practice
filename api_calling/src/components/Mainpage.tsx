@@ -7,8 +7,6 @@ import { RootState } from "@/redux/store"
 
 const MainPage=()=>{
     const dispatch=useDispatch();
-    const check=useSelector((state:RootState)=>state.user?.error);
-    console.log(check);
     const res=useSelector((state:RootState)=>state.user?.data);
     const load=useSelector((state:RootState)=>state.user?.loading);
 
@@ -20,11 +18,6 @@ const MainPage=()=>{
         return <p>loading...</p>
     }
 
-    // useEffect(()=>{
-    //     if(check){
-    //         return <p>Error...</p>
-    //     }
-    // },[check])
 
 
 
@@ -32,10 +25,11 @@ const MainPage=()=>{
         <>
         <div>
             <h1>Details</h1>
-            {res && res.map((details)=>(
+            {res && res.map((details:any)=>(
                 <div key={details.id}>
                     <p>{details.id}</p>
                     <p>{details.name}</p>
+                    <br />
                 </div>
             ))}
         </div>

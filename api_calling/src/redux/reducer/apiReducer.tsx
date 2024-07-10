@@ -1,6 +1,10 @@
+export interface user{
+    id:number;
+    name:string
+}
 interface mytypes{
     loading:boolean,
-    data:null,
+    data:user[] |null,
     error:boolean
 }
 const initialState:mytypes={
