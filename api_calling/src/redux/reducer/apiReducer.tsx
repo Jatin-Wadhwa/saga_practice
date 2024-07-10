@@ -1,6 +1,6 @@
 interface mytypes{
     loading:boolean,
-    data:null |any,
+    data:null,
     error:boolean
 }
 const initialState:mytypes={
@@ -20,7 +20,7 @@ const userReducer=(state=initialState,action:any)=>{
         case 'SUCCESS':
             return {
                 loading: false,
-                data: action.payload,
+                data: action.response,
                 error: false
             };
         case 'FAILED':

@@ -3,14 +3,18 @@ import axios, {AxiosResponse} from "axios";
 import {fetchUserSuccess,fetchUserFailure } from "../action/userActions";
 
 
+function userfetch(){
+    return fetch('https://jsonplaceholder.typicode.com/users').then(response=>response.json())
+}
+
 function* fetchUser(){
     try{
-        const response:AxiosResponse<any>= yield call(axios.get('https://jsonplaceholder.typicode.com/users'));
-        console.log('response');
-        yield put(fetchUserSuccess(response))
+        const response= yield call(userfetch);
+        console.log(response);
+        yield put({type:'SUCCESS',response});
     }
     catch(error:any){
-        yield put(fetchUserFailure(error.message))
+        yield put({type:'FAILED',payload:error.message})
         console.log(error.message);
     }
 }
